@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('code') {
             steps {
-                echo 'clonign the code.'
+                echo 'cloning the code.'
                 git url: "https://github.com/ayushrathore09/django-notes-app.git", branch: "main"
             }
         }
@@ -16,18 +16,16 @@ pipeline {
         stage('push') {
             steps {
                 echo 'push the image to docker hub'
-                withCredentials([usernamePassword(credentialsId: 'dockerhub',usernameVariable: 'USERNAME',passwordVariable: 'PASSWORD')]){
-                sh 'docker tag django-notes-app ${env.USERNAME}/django-notes-app:latest'
-                sh "docker login -u ${env.USERNAME} -p ${env.PASSWORD}"
-                sh "docker push ${env.USERNAME}/django-notes-app:latest"
+                withCredentials([usernamePassword(credentialsId: 'dockerhub',usernameVariable: 'dockerHubUser',passwordVariable: 'dockerHubPass')]){
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                sh "docker tag django-notes-app ${env.dockerHubUser}/django-notes-app:latest"
+                sh "docker push ${env.dockerHubUser}/django-notes-app:latest"
                 }
             }
         }
         stage('deploy') {
             steps {
                 echo 'Deploying the code to the container.'
-                #sh 'docker run -d -p 8000:8000 $USERNAME/django-notes-app:latest'
-                #sh 'docker-compose down && docker-compose up -d'
             }
         }
 
