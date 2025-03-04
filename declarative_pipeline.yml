@@ -18,7 +18,7 @@ pipeline {
                 echo 'push the image to docker hub'
                 withCredentials([usernamePassword(credentialsid: 'dockerhub',usernameVariable: 'USERNAME',passwordVariable: 'PASSWORD')])
                 sh 'docker tag django-notes-app $USERNAME/django-notes-app:latest'
-                sh "docker login -u $USERNAME -p $PASSWORD"
+                sh "docker login -u ${env.USERNAME} -p $(env.PASSWORD}"
                 sh "docker push $USERNAME/django-notes-app:latest"
             }
         }
