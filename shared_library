@@ -1,5 +1,3 @@
-# creating declarative pipeline using groovy syntax including shared libraries.
-################################################################################
 @Library("Shared") _
 pipeline {
     agent {label 'ayush'}
@@ -37,7 +35,7 @@ pipeline {
         }
         stage('code deploy'){
             steps{
-                echo "echo this is code deplyoing step."
+                echo "this is code deplyoing step."
                 sh "docker-compose down && docker-compose up -d"
             }
         }
