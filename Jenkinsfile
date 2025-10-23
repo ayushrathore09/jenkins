@@ -27,7 +27,8 @@ pipeline {
 
         stage ('Deploy the code'){
             steps{
-                sh "docker run -d -p 8000:8000 ayush:latest"
+                sh "docker compose up -d"
+                //sh "docker run -d -p 8000:8000 ayush:latest"
             }
         }
     }
