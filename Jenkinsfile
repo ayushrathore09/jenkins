@@ -32,7 +32,7 @@ pipeline {
                 //     // use "" if using ${env.var} or use '' if using ${var}
                 // }
                 script{
-                    code_push("ayush:latest .", "ayushrathore09")
+                    code_push("ayush:latest", "ayushrathore09")
                 }
             }
         }
