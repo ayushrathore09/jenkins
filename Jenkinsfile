@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'vinod'}
+    agent any
     stages {
         stage('code') {
             steps {
@@ -11,17 +11,23 @@ pipeline {
         stage('build') {
            steps {
                 echo 'building the image.'
-                sh 'docker build -t django-notes-app:21-10-2025 .'
+                sh 'docker build -t ayush:latest .'
             }
         }
         
         stage('push') {
             steps {
-                withCredentials([usernamePassword(credentialsId:'dockerhub',usernameVariable:'dockerhubUser',passwordVariable:'dockerhubPass')]){
-                    sh 'docker login -u ${env.dockerhubUser} -p ${env.dockerhubPass}'
-                    sh 'docker tag django-notes-app:21-10-2025 ${env.dockerhubUser}/django-notes-app:21-10-2025'
-                    sh 'docker push ayushrathore09/django-notes-app:21-10-2025'
+                withCredentials([usernamePassword(credentialsId:'dockerHub',usernameVariable:'dockerHubUser',passwordVariable:'dockerHubPass')]){
+                    sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                    sh "docker tag ayush:latest ${env.dockerHubUser}/ayush:21-10-2025"
+                    sh "docker push ${env.dockerHubUser}/ayush:21-10-2025"
                 }
+            }
+        }
+
+        stage ('Deploy the code'){
+            steps{
+                sh "docker run -d -p 8000:8000 ${env.dockerHubUser}/ayush:21-10-2025"
             }
         }
     }
