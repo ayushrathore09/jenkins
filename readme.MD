@@ -13,3 +13,7 @@ Creatig the CI/CD Pipeline using open source tool called JENKINS.
 ##################################################################3
 8. you can create additional node and use it as agent.
 9. you can set as "agent label lable_name" with managing jenkins entering agent host ip and ssh keys.
+
+
+#############################
+USED a SHARED LIBRARY stored in repo: "jenkins-shared-lib"
