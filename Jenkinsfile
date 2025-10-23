@@ -1,10 +1,15 @@
+@Library("Shared") _
 pipeline {
     agent any
     stages {
         stage('code') {
             steps {
-                echo 'code cloning'
-                git url: "https://github.com/ayushrathore09/django-notes-app.git", branch: "main"
+                script{
+                    code_clone("https://github.com/ayushrathore09/django-notes-app.git", "main")
+                }
+            //     echo 'code cloning'
+            //     git url: "https://github.com/ayushrathore09/django-notes-app.git", branch: "main"
+            // 
             }
         }
 
