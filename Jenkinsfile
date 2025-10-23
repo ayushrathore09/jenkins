@@ -9,7 +9,7 @@ pipeline {
                 }
             //     echo 'code cloning'
             //     git url: "https://github.com/ayushrathore09/django-notes-app.git", branch: "main"
-            // 
+                sh "code cloned successfully"
             }
         }
 
