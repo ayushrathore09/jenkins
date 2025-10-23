@@ -16,7 +16,7 @@ pipeline {
         stage('build') {
            steps {
                script{
-                    code_build("ayush:latest .")
+                    code_build("ayush:latest")
                }
                 // echo 'building the image.'
                 // sh 'docker build -t ayush:latest .'
