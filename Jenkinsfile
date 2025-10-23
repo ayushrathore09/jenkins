@@ -27,7 +27,7 @@ pipeline {
 
         stage ('Deploy the code'){
             steps{
-                sh "docker run -d -p 8000:8000 ${env.dockerHubUser}/ayush:21-10-2025"
+                sh "docker run -d -p 8000:8000 ayush:latest"
             }
         }
     }
