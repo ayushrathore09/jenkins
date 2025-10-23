@@ -29,7 +29,7 @@ pipeline {
                 //     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                 //     sh "docker tag ayush:latest ${env.dockerHubUser}/ayush:21-10-2025"
                 //     sh "docker push ${env.dockerHubUser}/ayush:21-10-2025"
-                //     // use "" if using ${env.var} or use '' if using ${var}
+                //     
                 // }
                 script{
                     code_push("ayush:latest", "ayushrathore09")
